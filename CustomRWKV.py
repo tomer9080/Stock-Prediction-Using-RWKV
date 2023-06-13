@@ -621,7 +621,7 @@ class RwkvModel(RwkvPreTrainedModel):
         state: Optional[List[torch.FloatTensor]] = None,
         use_cache: Optional[bool] = None,
         output_attentions: Optional[bool] = None,
-        output_hidden_states: Optional[bool] = None,
+        output_hidden_states: Optional[bool] = True,
         return_dict: Optional[bool] = None,
     ) -> Union[Tuple, RwkvOutput]:
         output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions
@@ -639,20 +639,20 @@ class RwkvModel(RwkvPreTrainedModel):
         elif input_ids is None and inputs_embeds is None:
             raise ValueError("You have to specify either input_ids or inputs_embeds")
 
-        if inputs_embeds is None:
-            inputs_embeds = self.embeddings(input_ids)
+        # if inputs_embeds is None:
+        #     inputs_embeds = self.embeddings(input_ids)
 
         if use_cache and state is None:
-            shape = (inputs_embeds.size(0), self.config.hidden_size, self.config.num_hidden_layers)
+            shape = (input_ids.size(0), self.config.hidden_size, self.config.num_hidden_layers)
             state = [
                 torch.zeros(
-                    *shape, dtype=inputs_embeds.dtype if i <= 1 else torch.float32, device=inputs_embeds.device
+                    *shape, dtype=input_ids.dtype if i <= 1 else torch.float32, device=input_ids.device
                 )
                 for i in range(5)
             ]
             state[4] -= 1e30
 
-        hidden_states = inputs_embeds
+        hidden_states = input_ids
 
         all_self_attentions = () if output_attentions else None
         all_hidden_states = () if output_hidden_states else None
