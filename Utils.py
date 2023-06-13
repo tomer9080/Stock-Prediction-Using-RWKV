@@ -162,7 +162,7 @@ def split_dataset_train_val_test(data_date, X, num_data_points, display_rate_ran
     data_y_val = data_y[split_index_train:split_index_val]
     data_y_test = data_y[split_index_val:]
 
-    plot_data_after_split(data_y_train, data_y_val, data_y_test, num_data_points, split_index_train, split_index_val, data_date)
+    # plot_data_after_split(data_y_train, data_y_val, data_y_test, num_data_points, split_index_train, split_index_val, data_date)
 
     return data_x_train, data_x_val, data_x_test, data_y_train, data_y_val, data_y_test
 
