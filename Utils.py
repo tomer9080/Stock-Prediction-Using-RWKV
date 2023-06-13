@@ -178,7 +178,7 @@ class TimeSeriesDataset(Dataset):
     def __getitem__(self, idx):
         return (self.x[idx], self.y[idx])
 
-def get_dataset_loaders(x_train, x_val, x_test, y_train, y_val, y_test):
+def get_dataset_loaders(x_train, x_val, x_test, y_train, y_val, y_test, shuffle=True):
     dataset_train = TimeSeriesDataset(x_train, y_train)
     dataset_val = TimeSeriesDataset(x_val, y_val)
     dataset_test = TimeSeriesDataset(x_test, y_test)
@@ -187,17 +187,17 @@ def get_dataset_loaders(x_train, x_val, x_test, y_train, y_val, y_test):
     print("Validation data shape", dataset_val.x.shape, dataset_val.y.shape)
     print("Test data shape", dataset_test.x.shape, dataset_test.y.shape)
 
-    train_dataloader = DataLoader(dataset_train, batch_size=config["training"]["batch_size"], shuffle=True)
-    val_dataloader = DataLoader(dataset_val, batch_size=config["training"]["batch_size"], shuffle=True)
-    test_dataloader = DataLoader(dataset_test, batch_size=config["training"]["batch_size"], shuffle=True)
+    train_dataloader = DataLoader(dataset_train, batch_size=config["training"]["batch_size"], shuffle=shuffle)
+    val_dataloader = DataLoader(dataset_val, batch_size=config["training"]["batch_size"], shuffle=shuffle)
+    test_dataloader = DataLoader(dataset_test, batch_size=config["training"]["batch_size"], shuffle=shuffle)
 
     return train_dataloader, val_dataloader, test_dataloader
 
 
-def run():
+def run(shuffle=True):
     data_date, data_close_price, num_data_points, display_rate_range = download_data(config)
     x_train, x_val, x_test, y_train, y_val, y_test = split_dataset_train_val_test(data_date, data_close_price, num_data_points, display_rate_range)
-    return get_dataset_loaders(x_train, x_val, x_test, y_train, y_val, y_test)
+    return get_dataset_loaders(x_train, x_val, x_test, y_train, y_val, y_test, shuffle), num_data_points
 
 ###====== Testing ======###
 if __name__ == "__main__":

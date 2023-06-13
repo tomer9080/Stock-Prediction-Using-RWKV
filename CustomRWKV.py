@@ -295,7 +295,7 @@ class RwkvSelfAttention(nn.Module):
         else:
             shifted = self.time_shift(hidden)
             if state is not None:
-                shifted[:, 0] = state[1][:, :, self.layer_id]
+                shifted[:, 0] = state[1][:, :, self.layer_id].squeeze()
         key = hidden * self.time_mix_key + shifted * (1 - self.time_mix_key)
         value = hidden * self.time_mix_value + shifted * (1 - self.time_mix_value)
         receptance = hidden * self.time_mix_receptance + shifted * (1 - self.time_mix_receptance)
