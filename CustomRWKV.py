@@ -596,6 +596,7 @@ class RwkvModel(RwkvPreTrainedModel):
         # self.embeddings = nn.Embedding(config.vocab_size, config.hidden_size) 
         self.blocks = nn.ModuleList([RwkvBlock(config, layer_id=idx) for idx in range(config.num_hidden_layers)])
         self.ln_out = nn.LayerNorm(config.hidden_size)
+        self.head = nn.Linear(config.hidden_size, 1) # we want 1 value at the end (prediction)
 
         self.layers_are_rescaled = False
 
@@ -674,6 +675,8 @@ class RwkvModel(RwkvPreTrainedModel):
                 all_self_attentions = all_self_attentions + (attentions,)
 
         hidden_states = self.ln_out(hidden_states)
+
+        hidden_states = self.head(hidden_states)
 
         if output_hidden_states:
             all_hidden_states = all_hidden_states + (hidden_states,)
