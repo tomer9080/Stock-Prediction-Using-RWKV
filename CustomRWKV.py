@@ -676,7 +676,7 @@ class RwkvModel(RwkvPreTrainedModel):
 
         hidden_states = self.ln_out(hidden_states)
 
-        hidden_states = self.head(hidden_states)
+        # hidden_states = self.head(hidden_states)
 
         if output_hidden_states:
             all_hidden_states = all_hidden_states + (hidden_states,)
