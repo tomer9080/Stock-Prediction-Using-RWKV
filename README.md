@@ -1,16 +1,9 @@
 # <center> Stock Adjusted Close Price Prediction Using RWKV </center>
-Hi! In this git repo You can find anything you need to learn how to train RWKV NN to predict a stock price.
 
-In this project we used Transformers architecture - encoder-decoder, to predict Bitcoin value into a chosen future horizon. 
-Our raw data holds almost 1 year of Bitcoin prices per minute (closing, opening, etc.). We extracted more statistics out of the data using common financial technical indicators - Finta, while making sure they are low correlated between them. We then fed the model with the data and trained it to predict the chosen future horizon based on past values.
-We optimized the hyperparameters of the model using Optuna.
+Hi! In this project we used RWKV architecture - a novel architecture trying to push RNNs to the transformers era, modified it to work with stock numerical values and trained it to predict future values. We've extracted features of the stock of The Coca-Cola Company (KO) and trained the data with those features. 
 
 <p align="center">
-  <img src='https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/presentation_preview.gif' width=600 ></a>
-</p>
-
-<p align="center">
-Watch on Youtube:  <a href="https://youtu.be/tb_47ng7ZOI"><img src="https://img.shields.io/badge/-YouTube-red?&style=for-the-badge&logo=youtube&logoColor=white" height=20></a>
+Watch on Youtube:  <a href=""><img src="https://img.shields.io/badge/-YouTube-red?&style=for-the-badge&logo=youtube&logoColor=white" height=20></a>
 </p>
  
 - [Stock Adjusted Close Price Prediction Using RWKV](#Stock-Adjusted-Close-Price-Prediction-Using-RWKV)
@@ -53,7 +46,7 @@ All of the data was scaled together using MinMax scaler.
 
 After that we split the data into train (80%), validation (10%), and test (10%), in chronological order as can be seen here:
 
-![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Data_Separation.png)
+![alt text](https://github.com/tomer9080/Stock-Prediction-Using-RWKV/blob/main/images/data_set_split.png)
 
 Finally we've divided the train set to windows, where each window is comprised of `window_size` samples of the features, and combined few windows together to create a batch for train, validation and test. 
 
@@ -64,7 +57,7 @@ since we wanted the NN to handle numerical data. The RWKV model is implemented a
 
 The model structure, including our added layers:
 <p align="center">
-  <img src="https://github.com/tomer9080/Stock-Prediction-Using-RWKV/images/RWKV_ARCH.pdf" width="450"/>
+  <img src="https://github.com/tomer9080/Stock-Prediction-Using-RWKV/blob/main/images/RWKV_ARCH.pdf" width="450"/>
 </p>
 
 
@@ -101,7 +94,7 @@ We trained the model with the hyperparameters:
 And we got the results:
 
 <p align="center">
-  <img src="https://github.com/tomer9080/Stock-Prediction-Using-RWKV/images/predictions_all.png" />
+  <img src="https://github.com/tomer9080/Stock-Prediction-Using-RWKV/blob/main/images/predictions_all.png" />
 </p>
 
 We can see that the trend if the predicted values, is similar to the original trend, and even that in the train and validation areas, we are giving pretty accurate prediciton.
@@ -109,7 +102,7 @@ We can see that the trend if the predicted values, is similar to the original tr
 Let's have a zoom in to the test prediction:
 
 <p align="center">
-  <img src="https://github.com/tomer9080/Stock-Prediction-Using-RWKV/images/predictions_test.png" />
+  <img src="https://github.com/tomer9080/Stock-Prediction-Using-RWKV/blob/main/images/predictions_test.png" />
 </p>
 
 Here we can see that the predicted trend behaves well, but after sometime it seems that we are losing resolution and diverging from the real stock values, although we are having success identifying sharp movements. We can also see how the fact that we've used moving average has smoothened our prediction, and it easy to observe how less spiky it is.
