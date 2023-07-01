@@ -57,7 +57,7 @@ since we wanted the NN to handle numerical data. The RWKV model is implemented a
 
 The model structure, including our added layers:
 <p align="center">
-  <img src="https://github.com/tomer9080/Stock-Prediction-Using-RWKV/blob/main/images/RWKV_ARCH.png" width="450"/>
+  <img src="https://github.com/tomer9080/Stock-Prediction-Using-RWKV/blob/main/images/rwkv_arch.png" width="450"/>
 </p>
 
 
