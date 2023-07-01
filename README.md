@@ -57,7 +57,7 @@ since we wanted the NN to handle numerical data. The RWKV model is implemented a
 
 The model structure, including our added layers:
 <p align="center">
-  <img src="https://github.com/tomer9080/Stock-Prediction-Using-RWKV/blob/main/images/RWKV_ARCH.pdf" width="450"/>
+  <img src="https://github.com/tomer9080/Stock-Prediction-Using-RWKV/blob/main/images/RWKV_ARCH.png" width="450"/>
 </p>
 
 
@@ -117,7 +117,7 @@ To retrain the model run [stock_prediction_using_rwkv.ipynb](https://github.com/
 | Folder |File name         | Purpose |
 |------|----------------------|------|
 |code|`stock_prediction_using_rwkv.ipynb`| Notebook which includes all data processing, training, and inference |
-|images|`RWKV_ARCH.pdf`| Image that shows our arch including the RWKV model |
+|images|`RWKV_ARCH.png`| Image that shows our arch including the RWKV model |
 | |`data_set_split.png`| Image that shows our data split |
 | |`predictions_all.png`| Image that shows the predictions obtained on all sets |
 | |`predictions_test.png`| Image that shows our result on the test set |
