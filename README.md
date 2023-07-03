@@ -1,9 +1,10 @@
 # <center> Stock Adjusted Close Price Prediction Using RWKV </center>
 
-Hi! In this project we used RWKV architecture - a novel architecture trying to push RNNs to the transformers era, modified it to work with stock numerical values and trained it to predict future values. We've extracted features of the stock of The Coca-Cola Company (KO) and trained the data with those features. 
-
+Hi! In this project we used [RWKV](https://arxiv.org/pdf/2305.13048.pdf) architecture - a novel architecture trying to push RNNs to the transformers era, modified it to work with stock numerical values and trained it to predict future values. We've extracted features of the stock of The Coca-Cola Company (KO) and trained the data with those features. 
+This project is a basic POC that we can apply numerical missions such as stock price forecasting to RWKV architecture.
+\
 <p align="center">
-Watch on Youtube:  <a href=""><img src="https://img.shields.io/badge/-YouTube-red?&style=for-the-badge&logo=youtube&logoColor=white" height=20></a>
+Watch on Youtube:  <a href="https://youtu.be/7g4SdVJrMoc"><img src="https://img.shields.io/badge/-YouTube-red?&style=for-the-badge&logo=youtube&logoColor=white" height=20></a>
 </p>
  
 - [Stock Adjusted Close Price Prediction Using RWKV](#Stock-Adjusted-Close-Price-Prediction-Using-RWKV)
@@ -71,8 +72,8 @@ The model structure, including our added layers:
 * `lr` = float, starting learning rate 
 * `factor` = float, multiplicative factor of learning rate decay (0.0 - 1.0)
 * `patience` = int, how many epochs we'll wait before decaying lr after no improvement
-
-The most crucial thing to understand here is the relations between `bptt_src`, `bptt_tgt` and `overlap`. We use `bptt_src` past samples to predict the following `bptt_tgt - overlap`.
+* `optimizer` = pytorch optimizer, In what method we'll try to optimize our criterion.
+* `scheduler` = pytorch scheduler, In what granularity/method we are reducing our lr.
 
 
 ## Result
@@ -80,7 +81,7 @@ The most crucial thing to understand here is the relations between `bptt_src`, `
 We trained the model with the hyperparameters:
 
 |Param|Value|
-|-------|-----|
+|-------|-------------|
 |`window_size` | 40 |
 |`hidden_layers`| 8 |
 |`hidden_states`| 32 |
@@ -90,6 +91,8 @@ We trained the model with the hyperparameters:
 |`lr`| 0.01 |
 |`factor`| 0.6 |
 |`patience`| 1 |
+|`optimizer`| `RAdam` |
+|`scheduler`| `ReduceLROnPlateu`|
 
 And we got the results:
 
@@ -117,7 +120,7 @@ To retrain the model run [stock_prediction_using_rwkv.ipynb](https://github.com/
 | Folder |File name         | Purpose |
 |------|----------------------|------|
 |code|`stock_prediction_using_rwkv.ipynb`| Notebook which includes all data processing, training, and inference |
-|images|`RWKV_ARCH.png`| Image that shows our arch including the RWKV model |
+|images|`rwkv_arch.png`| Image that shows our arch including the RWKV model |
 | |`data_set_split.png`| Image that shows our data split |
 | |`predictions_all.png`| Image that shows the predictions obtained on all sets |
 | |`predictions_test.png`| Image that shows our result on the test set |
