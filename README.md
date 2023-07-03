@@ -19,6 +19,12 @@ Watch on Youtube:  <a href="https://youtu.be/7g4SdVJrMoc"><img src="https://img.
 
 
 ## Previous Work
+RWKV repo:
+https://github.com/BlinkDL/RWKV-LM
+
+HuggingFace's RWKV repo:
+https://github.com/huggingface/transformers/tree/main/src/transformers/models/rwkv
+
 Bitcoin prediction using RNN:
 
 https://www.kaggle.com/muharremyasar/btc-historical-with-rnn
